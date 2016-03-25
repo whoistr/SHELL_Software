@@ -1,15 +1,16 @@
 #!/bin/bash
-mail="892677729@qq.com"
+mail=
 let io_limit=80
-HOST=139.129.48.65
+HOST=
 logfile="io_logfile"
+CD_FILE=
 
 if [ ! -f "$logfile" ];then 
     touch "$logfile"
 fi
 
 let flags=0
-used=`ssh "$HOST"  "df" | grep "/dev/" | grep -v "/dev/sr0" | awk '{print  $5}' | sed 's/\%//'` 
+used=`ssh "$HOST"  "df" | grep "/dev/"  |grep -v "$CD_FILE" | awk '{print  $5}' | sed 's/\%//'` 
 for used_f in $used 
 do
     if [ $used_f -gt $io_limit  ];then 
