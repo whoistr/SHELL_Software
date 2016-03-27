@@ -99,13 +99,14 @@ num=$(echo $filelist|sed 's/ /\n/g' |wc -l)
 [ -z "$filelist" ] && error "Searching path is empty"
 
 
-while [ $# -gt 0 ] 
+while [ $# -gt 0 ]
     do  
         allpath=0
-        for filepath in $filelist
+        for filepath in $filelist/$1
             do 
-                if [ -f $filepath/$1 ];then
-                    echo -e  "\e[1;32m$1 \e[0m: $filepath/$1"
+                if [ -f $filepath ];then
+                    
+                    echo -e  "\e[1;32m`basename $filepath` \e[0m: $filepath"
                     if [ $all == 'no' ];then 
                         break
                     fi 
@@ -114,10 +115,10 @@ while [ $# -gt 0 ]
                 fi
             done
         if [ $allpath == $num ];then 
-                echo -e  "\e[1;31m$1 \e[0m is not find..."
+                echo -e  "\e[1;31m`basename $filepath` \e[0m is not find..."
                 
         fi
-        shift
+    shift
     done
-
+     
 exit 0
