@@ -16,7 +16,7 @@ IFS='
 '          
 #set PATH as IFS
 OLDPATH=PATH
-PATH=/bin:/usr/bin
+PATH=PATH:/bin:/usr/bin
 export PATH
 
 no_list=
